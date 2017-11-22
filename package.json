@@ -1,0 +1,34 @@
+{
+  "name": "neutrino-bootstrap",
+  "version": "1.0.0",
+  "description": "integrate neutrino and bootstrap",
+  "main": "/src/index.js",
+  "scripts": {
+    "build": "neutrino build",
+    "start": "neutrino start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NachoMerino/Neutrino-Bootstrap.git"
+  },
+  "keywords": [
+    "git",
+    "neutrino",
+    "bootstrap"
+  ],
+  "author": "nachomerino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NachoMerino/Neutrino-Bootstrap/issues"
+  },
+  "homepage": "https://github.com/NachoMerino/Neutrino-Bootstrap#readme",
+  "devDependencies": {
+    "neutrino": "^7.3.3",
+    "neutrino-preset-airbnb-base": "^7.3.3",
+    "neutrino-preset-web": "^7.3.3"
+  },
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
