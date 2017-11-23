@@ -27,7 +27,7 @@ function loadCard(nameOfImg) {
 function loadCarrouselImg(nameOfImg) {
   const carrouselImg = `
     <div class="col-sm">
-      <div class="d-block" style="background-image: url(${loadPict(nameOfImg)});></div>
+      <img class="d-block" src="#" style="background-image: url(${loadPict(nameOfImg)});" alt="."/>
     </div>
   `;
   return carrouselImg;
@@ -83,7 +83,7 @@ const carrousel = `
       ${loadCarrousel('grid6', 'right')}
     </div>
     <div class="carousel-item">
-      ${loadCarrousel('grid4', 'left')}
+      ${loadCarrousel('admiral-ackbar', 'left')}
     </div>
     <div class="carousel-item">
       ${loadCarrousel('grid5', 'right')}
