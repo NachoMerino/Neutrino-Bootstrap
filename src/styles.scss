@@ -48,10 +48,7 @@ nav {
     min-height: 200px;
     background-size:cover;
     background-position: center;
-  }
-  .item {
-    height: 0;
-    padding-bottom: 48.8%;
+    background-repeat:none;
   }
   .carousel-inner {
     width: 100%;
@@ -64,6 +61,7 @@ nav {
     background-color: lightblue;
     padding: $grid-gutter-width/2;
     max-height: 50vh;
+    padding-top: 7em;
   }
   .right {
     text-align: left;
