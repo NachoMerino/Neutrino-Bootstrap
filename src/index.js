@@ -27,7 +27,7 @@ function loadCard(nameOfImg) {
 function loadCarrouselImg(nameOfImg) {
   const carrouselImg = `
     <div class="col-sm">
-      <img class="d-block" src="#" style="background-image: url(${loadPict(nameOfImg)});" alt="."/>
+      <div class="d-block" style="background-image: url(${loadPict(nameOfImg)});></div>
     </div>
   `;
   return carrouselImg;
