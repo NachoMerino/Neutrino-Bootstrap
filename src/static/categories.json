@@ -1,0 +1,34 @@
+[
+{
+  "id": 0,
+  "name": "PC"
+},
+{
+  "id": 1,
+  "name": "Laptop"
+},
+{
+  "id": 2,
+  "name": "Mac"
+},
+{
+  "id": 3,
+  "name": "PowerPC"
+},
+{
+  "id": 4,
+  "name": "Comodore64"
+},
+{
+  "id": 5,
+  "name": "Sinclair 1000"
+},
+{
+  "id": 6,
+  "name": "Commodore Amiga"
+},
+{
+  "id": 7,
+  "name": "Osborne 1"
+}
+]
