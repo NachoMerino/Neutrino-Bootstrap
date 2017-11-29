@@ -13,22 +13,13 @@
 },
 {
   "id": 3,
-  "name": "PowerPC"
-},
-{
-  "id": 4,
   "name": "Comodore64"
 },
 {
-  "id": 5,
+  "id": 4,
   "name": "Sinclair 1000"
 },
 {
-  "id": 6,
+  "id": 5,
   "name": "Commodore Amiga"
-},
-{
-  "id": 7,
-  "name": "Osborne 1"
-}
-]
+}]
