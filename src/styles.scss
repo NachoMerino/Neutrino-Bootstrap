@@ -1,90 +1,27 @@
 @import './custom-bootstrap';
-body {
-  background-color: lightgray;
-}
 
-#cards {
-  margin: 0 auto;
-  .card {
-    box-shadow: inset 3px 3px 5px #888888;
-    margin: 1em 0.5em;
-    width: 20rem;
-    &:hover {
-      transform: scale(1.01);
-      box-shadow: 3px 3px 5px #888888;
-      border-radius: 1em;
-    }
+.shop-{
+  &products-row {
+    margin-top: $grid-gutter-width * 0.5;
+    margin-bottom: $grid-gutter-width * 0.5;
   }
-  .card-img-top {
-    width: 100%;
-    height: 200px;
-  }
-}
 
-nav {
-  padding: 0;
-  margin: 0;
-  div>ul {
-    margin-left: 1em;
-  }
-  #logo {
-    margin: 0;
-    padding: 0;
-    img {
-      width: 40px;
-      height: 40px;
-      transform: scale(1.3);
-    }
-  }
-}
-
-#carrousel {
-  height: 50vh;
-  min-height: 200px;
-  width: 100%;
-  padding: 0;
-  img {
+  &carousel {
     height: 50vh;
     min-height: 200px;
-    background-size:cover;
-    background-position: center;
-    background-repeat:none;
-  }
-  .carousel-inner {
-    width: 100%;
-  }
-  .col-sm {
-    margin: 0;
-    padding: 0;
-  }
-  .carrouseltext {
-    background-color: lightblue;
-    padding: $grid-gutter-width/2;
-    max-height: 50vh;
-    padding-top: 7em;
-  }
-  .right {
-    text-align: left;
-  }
-  .left {
-    text-align: right;
-  }
 
-  .carousel-indicators {
-    li {
-      background-color: #212529;
-      height: 15px;
-      width: 15px;
-      border-radius: 50%;
+    .carousel-indicators li {
+      border-radius: $carousel-indicator-width;
     }
-    .active {
-      background-color: white;
+
+    &-description {
+      padding: $grid-gutter-width * 0.5;
     }
-  }
-  .btn {
-    background-color: #212529;
-    &:hover {
-      box-shadow: 3px 3px 5px #888888;
+    &-image {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
     }
   }
 }
+
