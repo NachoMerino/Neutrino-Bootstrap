@@ -8,13 +8,12 @@ import cardTemplate from './templates/card-template.html';
 
 function mkProductCard(product) {
   const $el = $(cardTemplate);
+  $el.find('div:nth-child(1)').addClass(`card ${product.category_id}`);
   $el.find('.card-title').text(product.name);
   $el.find('.card-img-top').attr('src', `http://via.placeholder.com/360x240?text=${product.name}`);
   $el.find('.card-text').text(`Price: ${product.price}€`);
-  $el.find('div:nth-child(1)').attr('data-prod-id', product.category_id);
   return $el;
 }
-
 
 $(() => {
   $('#root').append(navbarTemplate);
@@ -31,7 +30,7 @@ $(() => {
       </li>`);
       }
     });
-    
+
   $.ajax('./static/products.json')
     .done((products) => {
       $('#carousel-indicators').append('<div id="products-grid" class="container-fluid"></div>');
@@ -39,13 +38,21 @@ $(() => {
       products.forEach((product) => {
         $('.row').append(mkProductCard(product));
       });
-      $(() => {
-        $('.nav-link').click((e) => {
-          const { target } = e;
-          const dataId = target.getAttribute('data-id');
-          console.log(dataId);
-          $('.card[data-item-id=0]').empty();
-        });
+      // const navbarLong = $('.navbar-nav li').length;
+      // console.log(navbarLong);
+      $('.nav-link').click((e) => {
+        const { target } = e;
+        const dataId = target.getAttribute('data-id');
+        if (dataId === '0') {
+          $('.1').parent().detach();
+          $('.2').parent().detach();
+        } else if (dataId === '1') {
+          $('.0').parent().detach();
+          $('.2').parent().detach();
+        } else if (dataId === '2') {
+          $('.0').parent().detach();
+          $('.1').parent().detach();
+        }
       });
     });
 });
