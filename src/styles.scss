@@ -1,11 +1,11 @@
 @import './custom-bootstrap';
 
-.shop-{
-  &products-row {
-    margin-top: $grid-gutter-width * 0.5;
-    margin-bottom: $grid-gutter-width * 0.5;
-  }
+.card {
+  margin-top: $grid-gutter-width * 0.5;
+  margin-bottom: $grid-gutter-width * 0.5;
+}
 
+.shop- {
   &carousel {
     height: 50vh;
     min-height: 200px;
@@ -24,4 +24,3 @@
     }
   }
 }
-
