@@ -40,18 +40,21 @@ $(() => {
       });
       // const navbarLong = $('.navbar-nav li').length;
       // console.log(navbarLong);
-      $('.nav-link').click((e) => {
+      $('.nav-link, .btn').click((e) => {
         const { target } = e;
         const dataId = target.getAttribute('data-id');
         if (dataId === '0') {
-          $('.1').parent().detach();
-          $('.2').parent().detach();
+          $(`.${dataId}`).parent().show();
+          $('.1').parent().hide();
+          $('.2').parent().hide();
         } else if (dataId === '1') {
-          $('.0').parent().detach();
-          $('.2').parent().detach();
+          $(`.${dataId}`).parent().show();
+          $('.0').parent().hide();
+          $('.2').parent().hide();
         } else if (dataId === '2') {
-          $('.0').parent().detach();
-          $('.1').parent().detach();
+          $(`.${dataId}`).parent().show();
+          $('.0').parent().hide();
+          $('.1').parent().hide();
         }
       });
     });
