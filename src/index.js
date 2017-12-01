@@ -38,24 +38,27 @@ $(() => {
       products.forEach((product) => {
         $('.row').append(mkProductCard(product));
       });
-      // const navbarLong = $('.navbar-nav li').length;
-      // console.log(navbarLong);
       $('.nav-link, .btn').click((e) => {
         const { target } = e;
         const dataId = target.getAttribute('data-id');
-        if (dataId === '0') {
-          $(`.${dataId}`).parent().show();
-          $('.1').parent().hide();
-          $('.2').parent().hide();
-        } else if (dataId === '1') {
-          $(`.${dataId}`).parent().show();
-          $('.0').parent().hide();
-          $('.2').parent().hide();
-        } else if (dataId === '2') {
-          $(`.${dataId}`).parent().show();
-          $('.0').parent().hide();
-          $('.1').parent().hide();
+        const navbarLong = $('.navbar-nav li').length - 1;
+
+        function checkCategorie(data, num) {
+          console.info('numberof li', num);
+          console.info('numberof data', data);
+          const ammount = [];
+          for (let i = 0; i < num + 1; i += 1) {
+            ammount.push(i);
+          }
+          $(`.${data}`).parent().show();
+          const index = ammount.indexOf(data);
+          ammount.splice(index);
+          console.info('res f shisdasda', ammount);
+          for (let i = 0; i < ammount.length; i += 1) {
+            $(`.${ammount[i]}`).parent().hide();
+          }
         }
+        checkCategorie(dataId, navbarLong);
       });
     });
 });
