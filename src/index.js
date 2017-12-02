@@ -23,6 +23,10 @@ $(() => {
       $('#root')
         .append($carousel);
       $carousel.carousel();
+      $('.navbar-nav').append(`
+        <li class="nav-item">
+        <a class="nav-link" data-id="all" href="#">Show All</a>
+      </li>`);
       for (let i = 0; i < categories.length; i += 1) {
         $('.navbar-nav').append(`
         <li class="nav-item">
@@ -41,8 +45,14 @@ $(() => {
       $('.nav-link, .btn').click((e) => {
         const { target } = e;
         const dataId = target.getAttribute('data-id');
+        const navbarLong = $('.navbar-nav li').length - 2;
+        if (dataId === 'all') {
+          for (let i = 0; i < navbarLong; i += 1) {
+            $(`.${i}`).parent().show();
+          }
+          return;
+        }
         const dataIdNumb = Number(dataId);
-        const navbarLong = $('.navbar-nav li').length - 1;
 
         function checkCategorie(data, num) {
           const ammount = [];
