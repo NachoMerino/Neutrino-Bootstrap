@@ -41,24 +41,22 @@ $(() => {
       $('.nav-link, .btn').click((e) => {
         const { target } = e;
         const dataId = target.getAttribute('data-id');
+        const dataIdNumb = Number(dataId);
         const navbarLong = $('.navbar-nav li').length - 1;
 
         function checkCategorie(data, num) {
-          console.info('numberof li', num);
-          console.info('numberof data', data);
           const ammount = [];
           for (let i = 0; i < num + 1; i += 1) {
             ammount.push(i);
           }
           $(`.${data}`).parent().show();
           const index = ammount.indexOf(data);
-          ammount.splice(index);
-          console.info('res f shisdasda', ammount);
+          ammount.splice(index, 1);
           for (let i = 0; i < ammount.length; i += 1) {
             $(`.${ammount[i]}`).parent().hide();
           }
         }
-        checkCategorie(dataId, navbarLong);
+        checkCategorie(dataIdNumb, navbarLong);
       });
     });
 });
