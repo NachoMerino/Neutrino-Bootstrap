@@ -1,8 +1,23 @@
 @import './custom-bootstrap';
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 .card {
   margin-top: $grid-gutter-width * 0.5;
   margin-bottom: $grid-gutter-width * 0.5;
+}
+
+#infos {
+  display: block;
+  margin-top: 1em;
+}
+
+.modal-img {
+  width: 100%;
+  height: auto;
 }
 
 .shop- {
