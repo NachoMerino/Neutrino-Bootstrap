@@ -6,13 +6,16 @@ import modalTemplate from './templates/modal-template.html';
 import mkCarousel from './carousel';
 import mkProductCard from './products';
 
+const apiDataBase = 'http://localhost:3000/database/';
+const apiCategories = 'http://localhost:3000/categories/';
+
 $(() => {
   // loading the NavBar
   $('#root')
     .append(navbarTemplate)
     .append(modalTemplate);
   // Ajax request to get our categories
-  $.ajax('./static/categories.json')
+  $.ajax(apiCategories)
     .done((categories) => {
       // creating the categories with the json file results
       const $carousel = mkCarousel(categories);
@@ -33,7 +36,8 @@ $(() => {
     });
 
   // ajax request to get products
-  $.ajax('./static/products.json')
+
+  $.ajax(apiDataBase)
     .done((products) => {
       $('#carousel-indicators').append(`<div class="infobox"><h2 id="infos"> All Products (${Object.keys(products).length})</h2></div>`);
       // when done all the indicators and the begining of the product grid is added
@@ -84,14 +88,13 @@ $(() => {
       $('[data-toggle="modal"]').click((e) => {
         const { target } = e;
         const targetId = target.getAttribute('id');
-        $.ajax('./static/products.json')
+        $.ajax(apiDataBase)
           .done((modalProduct) => {
             const modalPath = modalProduct[targetId];
             $('.modal-title').text(modalPath.name);
             $('.modal-img').attr('src', modalPath.picture);
-            $('.modal-body')
-              .text(`The amazing products has a cost of just....${modalPath.price}`)
-              .text(modalPath.description);
+            $('.modal-body').text(modalPath.description);
+            $('.modal-price').text(`Price ${modalPath.price} €`);
           });
       });
     })

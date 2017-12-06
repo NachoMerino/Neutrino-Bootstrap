@@ -6,8 +6,21 @@ img {
 }
 
 .card {
-  margin-top: $grid-gutter-width * 0.5;
   margin-bottom: $grid-gutter-width * 0.5;
+  &-img-top {
+    border: none;
+    height: 250px;
+  }
+}
+
+.modal {
+  &-price {
+    padding: 0 15px;
+    font-weight: bold;
+  }
+  &-img {
+    box-shadow: 0px 1px #888888;
+  }
 }
 
 #infos {
@@ -15,10 +28,6 @@ img {
   margin-top: 1em;
 }
 
-.modal-img {
-  width: 100%;
-  height: auto;
-}
 
 .shop- {
   &carousel {

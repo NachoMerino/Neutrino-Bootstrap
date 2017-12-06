@@ -9,6 +9,7 @@ function mkIndicator(number) {
 function mkSlide(item) {
   const $el = $(carouselItemTemplate);
   $el.find('h2').text(item.name);
+  $el.find('p').text(item.description);
   $el.find('a').attr('data-id', item.id);
   $el.find('a').addClass('btn btn-xl btn-primary btn');
   $el.find('.shop-carousel-image').html(`<img src="${item.picture}" alt="${item.name}">`);
