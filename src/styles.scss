@@ -5,6 +5,9 @@ img {
   height: auto;
 }
 
+#infos{
+  padding-left: $grid-gutter-width * 0.5;
+}
 .card {
   margin-bottom: $grid-gutter-width * 0.5;
   &-img-top {

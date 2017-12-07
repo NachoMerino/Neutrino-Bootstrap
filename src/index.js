@@ -39,19 +39,24 @@ $(() => {
 
   $.ajax(apiDataBase)
     .done((products) => {
-      $('#carousel-indicators').append(`<div class="infobox"><h2 id="infos"> All Products (${Object.keys(products).length})</h2></div>`);
+      // add the number of items of the complete shop
+      $('#carousel-indicators').append(`<div class="infobox"><h2 id="infos"> This Shop has ${Object.keys(products).length} Products</h2></div>`);
       // when done all the indicators and the begining of the product grid is added
       $('#carousel-indicators').append('<div id="products-grid" class="container-fluid"></div>');
       $('#products-grid').append('<div class="row"></div>');
+      $('.navbar-nav').find('li:first').addClass('active');
       // Creating the card for all the products that are anside the Json file
       products.forEach((product) => {
         $('.row').append(mkProductCard(product));
       });
       // click event to show all products from a expecific categorie
-      $('.nav-link, .moreinfo').click((e) => {
+      $('.nav-link, .moreinfo').click((button) => {
         // targering to obtain the id of the button pressed
-        const { target } = e;
+        const { target } = button;
         const dataId = target.getAttribute('data-id');
+        // make active the category we are watching
+        $('.nav-link').closest('ul').find('.active').removeClass('active');
+        $(target).closest('li').addClass('active');
         const navbarLong = $('.navbar-nav li').length - 2;
         // in case "All Products" its press, show all the cards
         if (dataId === 'all') {
@@ -59,13 +64,24 @@ $(() => {
           products.forEach((product) => {
             $('.row').append(mkProductCard(product));
           });
+
+          // show the number of actual products
+          $('.infobox').empty();
+          const numItems = $('.row div:nth-child(2)').length;
+          $('.infobox').html(`<h2 id="infos"> This Shop has ${numItems - 1} Products</h2>`);
           return;
         }
-        // transfor dataId from number to String with number()
+
+        // transform dataId from number to String with number()
         const dataIdNumb = Number(dataId);
 
         // function to show or hide the cards with same categorie
-        function checkCategorie(data, num) {
+        function checkCategorie(data, num, productsToGo) {
+          // clean the products
+          $('.row').empty();
+          productsToGo.forEach((product) => {
+            $('.row').append(mkProductCard(product));
+          });
           const ammount = [];
           // populate the array with numbers that are the same as the number of categories
           for (let i = 0; i < num + 1; i += 1) {
@@ -73,8 +89,7 @@ $(() => {
           }
           // show card with the press categorie
           $(`.${data}`).parent().append();
-          const check = $('.row .col-12').length;
-          console.log(check);
+
           // find the position in the array of the pressed categorie
           const index = ammount.indexOf(data);
           // delete the pressed categorie from the array
@@ -83,11 +98,16 @@ $(() => {
           for (let i = 0; i < ammount.length; i += 1) {
             $(`.${ammount[i]}`).parent().detach();
           }
+          // make active the clicked button
+          const myCategory = $('.navbar-nav').find('.active').text();
+          $('.infobox').empty();
+          const numItems = $('.row div:nth-child(2)').length;
+          $('.infobox').html(`<h2 id="infos"> Total Products in ${myCategory}: ${numItems - 1}</h2>`);
         }
-        checkCategorie(dataIdNumb, navbarLong);
+        checkCategorie(dataIdNumb, navbarLong, products);
       });
-      $('[data-toggle="modal"]').click((e) => {
-        const { target } = e;
+      $('[data-toggle="modal"]').click((event) => {
+        const { target } = event;
         const targetId = target.getAttribute('id');
         $.ajax(apiDataBase)
           .done((modalProduct) => {
