@@ -12,7 +12,7 @@ function mkSlide(item) {
   $el.find('p').text(item.description);
   $el.find('a').attr('data-id', item.id);
   $el.find('a').addClass('btn btn-xl btn-primary btn');
-  $el.find('.shop-carousel-image').html(`<img src="${item.picture}" alt="${item.name}">`);
+  $el.find('.shop-carousel-image').attr('style', `background-image: url(${item.picture});background-size: cover;background-position: center;`);
   return $el;
 }
 
@@ -21,7 +21,6 @@ export default function mkCarousel(items) {
   const $el = $(carouselTemplate);
   // we create a reference to the elements in which we want to put things
   const $indicators = $el.find('.carousel-indicators');
-
   const $slides = $el.find('.carousel-inner');
 
   items.forEach((item, number) => {
