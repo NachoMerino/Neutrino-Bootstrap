@@ -39,6 +39,7 @@ $(() => {
 
   $.ajax(apiDataBase)
     .done((products) => {
+      console.log(products);
       $('#carousel-indicators').append(`<div class="infobox"><h2 id="infos"> All Products (${Object.keys(products).length})</h2></div>`);
       // when done all the indicators and the begining of the product grid is added
       $('#carousel-indicators').append('<div id="products-grid" class="container-fluid"></div>');
@@ -52,38 +53,16 @@ $(() => {
         // targering to obtain the id of the button pressed
         const { target } = e;
         const dataId = target.getAttribute('data-id');
-        const navbarLong = $('.navbar-nav li').length - 2;
+        $('.col-12').remove();
+        products.forEach((product) => {
+          $('.row').filter(`.${dataId}`).append(mkProductCard(product));
+        });
         // in case "All Products" its press, show all the cards
         if (dataId === 'all') {
-          for (let i = 0; i < navbarLong; i += 1) {
+          for (let i = 0; i < 3; i += 1) {
             $(`.${i}`).parent().show();
           }
-          return;
         }
-        // transfor dataId from number to String with number()
-        const dataIdNumb = Number(dataId);
-
-        // function to show or hide the cards with same categorie
-        function checkCategorie(data, num) {
-          const ammount = [];
-          // populate the array with numbers that are the same as the number of categories
-          for (let i = 0; i < num + 1; i += 1) {
-            ammount.push(i);
-          }
-          // show card with the press categorie
-          $(`.${data}`).parent().show();
-          const check = $('.row .col-12').length;
-          console.log(check);
-          // find the position in the array of the pressed categorie
-          const index = ammount.indexOf(data);
-          // delete the pressed categorie from the array
-          ammount.splice(index, 1);
-          // hide all the categories that remain inside the array
-          for (let i = 0; i < ammount.length; i += 1) {
-            $(`.${ammount[i]}`).parent().hide();
-          }
-        }
-        checkCategorie(dataIdNumb, navbarLong);
       });
       $('[data-toggle="modal"]').click((e) => {
         const { target } = e;
