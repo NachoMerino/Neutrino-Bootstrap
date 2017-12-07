@@ -55,9 +55,10 @@ $(() => {
         const navbarLong = $('.navbar-nav li').length - 2;
         // in case "All Products" its press, show all the cards
         if (dataId === 'all') {
-          for (let i = 0; i < navbarLong; i += 1) {
-            $(`.${i}`).parent().show();
-          }
+          $('.row').empty();
+          products.forEach((product) => {
+            $('.row').append(mkProductCard(product));
+          });
           return;
         }
         // transfor dataId from number to String with number()
@@ -71,7 +72,7 @@ $(() => {
             ammount.push(i);
           }
           // show card with the press categorie
-          $(`.${data}`).parent().show();
+          $(`.${data}`).parent().append();
           const check = $('.row .col-12').length;
           console.log(check);
           // find the position in the array of the pressed categorie
@@ -80,7 +81,7 @@ $(() => {
           ammount.splice(index, 1);
           // hide all the categories that remain inside the array
           for (let i = 0; i < ammount.length; i += 1) {
-            $(`.${ammount[i]}`).parent().hide();
+            $(`.${ammount[i]}`).parent().detach();
           }
         }
         checkCategorie(dataIdNumb, navbarLong);
