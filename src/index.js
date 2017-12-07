@@ -64,17 +64,14 @@ $(() => {
           products.forEach((product) => {
             $('.row').append(mkProductCard(product));
           });
-
           // show the number of actual products
           $('.infobox').empty();
           const numItems = $('.row div:nth-child(2)').length;
           $('.infobox').html(`<h2 id="infos"> This Shop has ${numItems - 1} Products</h2>`);
           return;
         }
-
-        // transform dataId from number to String with number()
+        // transform dataId from String to Number with number()
         const dataIdNumb = Number(dataId);
-
         // function to show or hide the cards with same categorie
         function checkCategorie(data, num, productsToGo) {
           // clean the products
@@ -107,6 +104,7 @@ $(() => {
         checkCategorie(dataIdNumb, navbarLong, products);
       });
       $('[data-toggle="modal"]').click((event) => {
+        $('figure figcaption').html('<h1>ADDED!</h1>').hide();
         const { target } = event;
         const targetId = target.getAttribute('id');
         $.ajax(apiDataBase)
@@ -117,6 +115,10 @@ $(() => {
             $('.modal-body').text(modalPath.description);
             $('.modal-price').text(`Price ${modalPath.price} €`);
           });
+      });
+      $('.modal-footer > .btn-primary').click(() => {
+        $('.modal-img').attr('src', 'https://media.giphy.com/media/11ISwbgCxEzMyY/giphy.gif');
+        $('figure figcaption').html('<h1>ADDED!</h1>').delay(3000).fadeIn(1000);
       });
     })
     .fail(() => {});

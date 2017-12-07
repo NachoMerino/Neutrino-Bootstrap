@@ -5,9 +5,22 @@ img {
   height: auto;
 }
 
-#infos{
+figcaption {
+  h1 {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 8em;
+    color: pink;
+    text-shadow: 8px 8px black; 
+  }
+}
+
+#infos {
   padding-left: $grid-gutter-width * 0.5;
 }
+
 .card {
   margin-bottom: $grid-gutter-width * 0.5;
   &-img-top {
