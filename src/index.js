@@ -6,8 +6,10 @@ import modalTemplate from './templates/modal-template.html';
 import mkCarousel from './carousel';
 import mkProductCard from './products';
 
-const apiDataBase = 'http://localhost:3000/database/';
-const apiCategories = 'http://localhost:3000/categories/';
+// const apiDataBase = 'http://localhost:3000/products/';
+// const apiCategories = 'http://localhost:3000/categories/';
+const apiDataBase = 'http://10.0.1.24:3000/database/';
+const apiCategories = 'http://10.0.1.24:3000/categories/';
 
 $(() => {
   // loading the NavBar
@@ -52,6 +54,7 @@ $(() => {
       // click event to show all products from a expecific categorie
       $('.nav-link, .moreinfo').click((button) => {
         // targering to obtain the id of the button pressed
+        button.preventDefault();
         const { target } = button;
         const dataId = target.getAttribute('data-id');
         // make active the category we are watching
@@ -86,7 +89,6 @@ $(() => {
           }
           // show card with the press categorie
           $(`.${data}`).parent().append();
-
           // find the position in the array of the pressed categorie
           const index = ammount.indexOf(data);
           // delete the pressed categorie from the array
@@ -104,7 +106,7 @@ $(() => {
         checkCategorie(dataIdNumb, navbarLong, products);
       });
       $('[data-toggle="modal"]').click((event) => {
-        $('figure figcaption').html('<h1>ADDED!</h1>').hide();
+        event.preventDefault();
         const { target } = event;
         const targetId = target.getAttribute('id');
         $.ajax(apiDataBase)
@@ -115,10 +117,6 @@ $(() => {
             $('.modal-body').text(modalPath.description);
             $('.modal-price').text(`Price ${modalPath.price} €`);
           });
-      });
-      $('.modal-footer > .btn-primary').click(() => {
-        $('.modal-img').attr('src', 'https://media.giphy.com/media/11ISwbgCxEzMyY/giphy.gif');
-        $('figure figcaption').html('<h1>ADDED!</h1>').delay(3000).fadeIn(1000);
       });
     })
     .fail(() => {});
