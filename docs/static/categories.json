@@ -1,13 +1,16 @@
 [
 {
   "id": 0,
-  "name": "PC"
+  "name": "PC",
+  "picture":"https://images.unsplash.com/photo-1500083443496-000d756d070c?auto=format&fit=crop&w=1328&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
 },
 {
   "id": 1,
-  "name": "Laptop"
+  "name": "Laptop",
+  "picture":"https://images.unsplash.com/photo-1508984921474-bc8302cb4d04?auto=format&fit=crop&w=1350&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
 },
 {
   "id": 2,
-  "name": "Mac"
+  "name": "Mac",
+  "picture":"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1351&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
 }]

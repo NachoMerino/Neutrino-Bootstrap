@@ -10,7 +10,9 @@
   "name": "Dell 2000",
   "price": 600,
   "category_id": 0,
-  "highlight": true
+  "highlight": true,
+  "picture": "https://images.unsplash.com/photo-1511415932124-42efedd2eacf?auto=format&fit=crop&w=1351&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D",
+  "description": "The N2000 switch series offers a power-efficient Gigabit Ethernet (GbE)network-access switching solution with integrated 10GbE uplinks. With high-performance capabilities and wire-speed performance, utilizing a non-blocking architecture to easily handle unexpected traffic loads, the switches offer simple management and scalability via an 40Gbps (fullduplex) high availability stacking architecture that allows management of up to four switches from a single IP address. An integrated 80PLUScertified power supply and features such as Energy-Efficient Ethernet and short cable detection provide energy efficiency to help decrease power and cooling costs."
 },
 {
   "id": 2,

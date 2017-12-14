@@ -2,7 +2,7 @@
   "name": "neutrino-bootstrap",
   "version": "1.0.0",
   "description": "integrate neutrino and bootstrap",
-  "main": "/src/index.js",
+  "main": "src/index.js",
   "scripts": {
     "build": "neutrino build",
     "start": "neutrino start",

@@ -178,8 +178,8 @@ $(() => {
             const totalPriceSum = totalPrice.reduce((a, b) => a + b, 0);
             $('.lighter-text').append(`Total price: ${totalPriceSum} €`);
             // amount of   items from localstorage
-            const shoppingCartLength = $('.shopping-cart-items li');
-            $('.badge').text(shoppingCartLength.length);
+            const shoppingCartLength = $('.shopping-cart-items li').length;
+            $('.badge').text(shoppingCartLength);
             $('.removeItemButton').click((id) => {
               /* eslint-disable */
               const { target } = id;
