@@ -119,13 +119,16 @@ $(() => {
             $('.modal-price').text(`Price ${modalPath.price} €`);
           });
       });
+
+      // My Cart code start here
+
       const shoppingCart = $('.shopping-cart-items');
       $('.shopping-cart').hide();
-      $('.right').click(() => {
-        $('.shopping-cart').toggle();
-      });
       const totalPrice = [];
       $('.addItems').click((addItem) => {
+        /* eslint-disable */
+        openCart();
+        /* eslint-enable */
         $('.shopping-cart').show();
         addItem.preventDefault();
         const { target } = addItem;
@@ -133,30 +136,90 @@ $(() => {
         $.ajax(apiDataBase)
           .done((cartProduct) => {
             const cartPath = cartProduct[addedItem];
-            const items = { name: cartPath.name, price: cartPath.price, picture: cartPath.picture };
+            let items = {
+              name: cartPath.name,
+              price: cartPath.price,
+              quantity: 1,
+              picture: cartPath.picture,
+            };
+            if (localStorage.getItem(addedItem) !== null) {
+              const localStorQuantity = JSON.parse(localStorage.getItem(addedItem));
+              let counterQuantity = localStorQuantity.quantity;
+              items = {
+                name: cartPath.name,
+                price: cartPath.price,
+                quantity: counterQuantity += 1,
+                picture: cartPath.picture,
+              };
+            }
             localStorage.setItem(addedItem, JSON.stringify(items));
-            shoppingCart.append(`
-              <li>
+            const localStorPicture = JSON.parse(localStorage.getItem(addedItem));
+            const localStorName = JSON.parse(localStorage.getItem(addedItem));
+            const localStorPrice = JSON.parse(localStorage.getItem(addedItem));
+            const localStorQuantity = JSON.parse(localStorage.getItem(addedItem));
+            if (localStorQuantity.quantity === 1) {
+              shoppingCart.append(`
+              <li id="${addedItem}">
                 <button type="button" class="close removeItemButton" aria-label="Close">
                 <span data-id="${addedItem}" aria-hidden="true">&times;</span>
                 </button>
-                <img src="${cartPath.picture}">
-                <h3 class="item-name">${cartPath.name}</h3>
-                <h6 class="item-price">${cartPath.price} €</h6>
+                <img src="${localStorPicture.picture}">
+                <h3 class="item-name">${localStorName.name}</h3>
+                <h6 class="item-price">${localStorPrice.price} €</h6>
+                <h6 class="item-quantity-${addedItem}">Quantity: ${localStorQuantity.quantity}</h6>
               </li>`);
-            $('.removeItemButton').click((toDelete) => {
-              // here i am
-              const { deleted } = toDelete;
-              const deleteItem = deleted.getAttribute('data-id');
-              console.log(deleteItem);
-            });
+            } else {
+              // const myCategory = $('.navbar-nav').find('.active').text();
+              $(`.item-quantity-${addedItem}`).html(`<h6 class="item-quantity-${addedItem}">Quantity: ${localStorQuantity.quantity}</h6>`);
+            }
+
             $('.lighter-text').empty();
             totalPrice.push(cartPath.price);
             const totalPriceSum = totalPrice.reduce((a, b) => a + b, 0);
             $('.lighter-text').append(`Total price: ${totalPriceSum} €`);
+            // amount of   items from localstorage
             const shoppingCartLength = $('.shopping-cart-items li');
             $('.badge').text(shoppingCartLength.length);
+            $('.removeItemButton').click((id) => {
+              /* eslint-disable */
+              const { target } = id;
+              const idToDelete = target.getAttribute('data-id');
+              /* eslint-enable */
+              localStorage.removeItem(idToDelete);
+              $(`#${idToDelete}`).remove();
+            });
           });
+      });
+
+      function openCart() {
+        const shoppingCartLength = $('.shopping-cart-items li');
+        // reload localstorage
+        if (shoppingCartLength.length === 0) {
+          const numItems = $('.row div:nth-child(2)').length;
+          for (let i = 0; i < numItems; i += 1) {
+            if (localStorage.getItem(i) !== null) {
+              const localStorPicture = JSON.parse(localStorage.getItem(i));
+              const localStorName = JSON.parse(localStorage.getItem(i));
+              const localStorPrice = JSON.parse(localStorage.getItem(i));
+              const localStorQuantity = JSON.parse(localStorage.getItem(i));
+              shoppingCart.append(`
+          <li>
+            <button type="button" class="close removeItemButton" aria-label="Close">
+            <span data-id="${i}" aria-hidden="true">&times;</span>
+            </button>
+            <img src="${localStorPicture.picture}">
+            <h3 class="item-name">${localStorName.name}</h3>
+            <h6 class="item-price">${localStorPrice.price} €</h6>
+            <h6 class="item-quantity-${i}">Quantity: ${localStorQuantity.quantity}</h6>
+          </li>`);
+            }
+          }
+        }
+        // loaded
+        $('.shopping-cart').toggle();
+      }
+      $('.right').click(() => {
+        openCart();
       });
     })
     .fail(() => {});
