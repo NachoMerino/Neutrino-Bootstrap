@@ -5,6 +5,7 @@ import navbarTemplate from './templates/navbar.html';
 import modalTemplate from './templates/modal-template.html';
 import mkCarousel from './carousel';
 import mkProductCard from './products';
+// import mkCart from './cart';
 
 // const apiDataBase = 'http://localhost:3000/products/';
 // const apiCategories = 'http://localhost:3000/categories/';
@@ -116,6 +117,45 @@ $(() => {
             $('.modal-img').attr('src', modalPath.picture);
             $('.modal-body').text(modalPath.description);
             $('.modal-price').text(`Price ${modalPath.price} €`);
+          });
+      });
+      const shoppingCart = $('.shopping-cart-items');
+      $('.shopping-cart').hide();
+      $('.right').click(() => {
+        $('.shopping-cart').toggle();
+      });
+      const totalPrice = [];
+      $('.addItems').click((addItem) => {
+        $('.shopping-cart').show();
+        addItem.preventDefault();
+        const { target } = addItem;
+        const addedItem = target.getAttribute('id');
+        $.ajax(apiDataBase)
+          .done((cartProduct) => {
+            const cartPath = cartProduct[addedItem];
+            const items = { name: cartPath.name, price: cartPath.price, picture: cartPath.picture };
+            localStorage.setItem(addedItem, JSON.stringify(items));
+            shoppingCart.append(`
+              <li>
+                <button type="button" class="close removeItemButton" aria-label="Close">
+                <span data-id="${addedItem}" aria-hidden="true">&times;</span>
+                </button>
+                <img src="${cartPath.picture}">
+                <h3 class="item-name">${cartPath.name}</h3>
+                <h6 class="item-price">${cartPath.price} €</h6>
+              </li>`);
+            $('.removeItemButton').click((toDelete) => {
+              // here i am
+              const { deleted } = toDelete;
+              const deleteItem = deleted.getAttribute('data-id');
+              console.log(deleteItem);
+            });
+            $('.lighter-text').empty();
+            totalPrice.push(cartPath.price);
+            const totalPriceSum = totalPrice.reduce((a, b) => a + b, 0);
+            $('.lighter-text').append(`Total price: ${totalPriceSum} €`);
+            const shoppingCartLength = $('.shopping-cart-items li');
+            $('.badge').text(shoppingCartLength.length);
           });
       });
     })

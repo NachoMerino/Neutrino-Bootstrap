@@ -3,9 +3,33 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav mr-auto">
     </ul>
   </div>
+  <!--Adding shopping-cart-header-->
+  <div class="right">
+    <ul class="shopping-nav">
+      <li class="cart">
+        <a href="#" id="cart" class="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">0</span></a>
+    </ul>
+  </div>
 </nav>
+
+
+<!--Adding shopping-cart -->
+<div class="shopping-cart">
+    <div class="shopping-cart-header">
+      <i class="fa fa-shopping-cart cart-icon"></i>Total products: <span class="badge">0</span>
+      <div class="shopping-cart-total">
+        <span class="lighter-text">Total price: 0 €</span>
+        <span class="total"></span>
+      </div>
+    </div> <!--end shopping-cart-header -->
+
+    <ul class="shopping-cart-items">
+    </ul>
+
+    <button type="button" class="btn btn-dark btn-block">Checkout</button>
+    <button type="button" class="btn btn-danger emptyCart btn-block">Remove all products</button>
+  </div> <!--end shopping-cart -->
