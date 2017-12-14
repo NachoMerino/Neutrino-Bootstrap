@@ -10,7 +10,7 @@ module.exports = {
       'neutrino-preset-web',
       {
         html: {
-          title: 'Neutrino-Bootstrap'
+          title: 'Online Shop'
         }
       }
     ],
