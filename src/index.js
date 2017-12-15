@@ -6,11 +6,15 @@ import modalTemplate from './templates/modal-template.html';
 import mkCarousel from './carousel';
 import mkProductCard from './products';
 // import mkCart from './cart';
-
+// From static folder
+const apiDataBase = './static/products.json';
+const apiCategories = './static/categories.json';
+// LocalServer 3000
 // const apiDataBase = 'http://localhost:3000/products/';
 // const apiCategories = 'http://localhost:3000/categories/';
-const apiDataBase = 'http://10.0.1.24:3000/database/';
-const apiCategories = 'http://10.0.1.24:3000/categories/';
+// RaspBerry PI
+// const apiDataBase = 'http://10.0.1.24:3000/database/';
+// const apiCategories = 'http://10.0.1.24:3000/categories/';
 
 $(() => {
   // loading the NavBar
