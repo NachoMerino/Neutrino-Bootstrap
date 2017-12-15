@@ -1,3 +1,6 @@
+- You can test it here:
+- (https://nachomerino.github.io/OnlineShop-Neutrino-Bootstrap/)
+
 - Create a repository on GitHub (https://github.com/new) and clone it locally
 - `npm init` (will create the package.json)
 - When asked use 'src/index.js' as entry point
